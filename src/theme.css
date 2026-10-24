@@ -1,0 +1,163 @@
+/* Crucible.ai — Neobrutalism design tokens (source: p5s/Neobrutalism_design_main.md)
+   primary #FDC800 · secondary #432DD7 · success #16A34A · warning #D97706 · danger #DC2626
+   surface #FBFBF9 · text #1C293C · type scale 13/15/17/21/27/35 · spacing 4/8/12/16/24/32 */
+
+:root {
+  --surface: #FBFBF9;
+  --card: #FFFFFF;
+  --ink: #1C293C;
+  --muted: #56637A;
+  --soft: #F1F0EA;
+  --accent: #432DD7;
+  --primary-soft: #FFF1A8;
+  --secondary-soft: #DDD8FF;
+  --success-soft: #C9F2D6;
+  --warning-soft: #FDE2B0;
+  --danger-soft: #FFD0D0;
+  --chart-closed: #432DD7;
+  color-scheme: light;
+}
+
+.dark {
+  --surface: #12151C;
+  --card: #1B2030;
+  --ink: #F4F4EF;
+  --muted: #A3ADBF;
+  --soft: #252B3B;
+  --accent: #A99CFF;
+  --primary-soft: #3D3300;
+  --secondary-soft: #231C5E;
+  --success-soft: #0F3D22;
+  --warning-soft: #4A3208;
+  --danger-soft: #4A1515;
+  --chart-closed: #A99CFF;
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 15px;
+  background-color: var(--surface);
+  color: var(--ink);
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--ink) 16%, transparent) 1.2px,
+    transparent 1.2px
+  );
+  background-size: 22px 22px;
+}
+
+::selection {
+  background: #FDC800;
+  color: #1C293C;
+}
+
+:focus-visible {
+  outline: 3px solid #432DD7;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.dark :focus-visible {
+  outline-color: #FDC800;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--soft);
+  border-left: 2px solid var(--ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ink);
+  border: 3px solid var(--soft);
+  border-radius: 8px;
+}
+
+/* ---- Range slider ---- */
+.nb-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 22px;
+  background: transparent;
+  cursor: pointer;
+}
+.nb-range::-webkit-slider-runnable-track {
+  height: 10px;
+  background: var(--soft);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+}
+.nb-range::-moz-range-track {
+  height: 10px;
+  background: var(--soft);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+}
+.nb-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -8px;
+  background: #FDC800;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  box-shadow: 2px 2px 0 0 var(--ink);
+}
+.nb-range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: #FDC800;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  box-shadow: 2px 2px 0 0 var(--ink);
+}
+
+/* ---- Animated bits (all disabled for reduced-motion users) ---- */
+@keyframes nb-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes nb-stripes {
+  from { background-position: 0 0; }
+  to { background-position: 28px 0; }
+}
+@keyframes nb-slide {
+  from { transform: translateX(40px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes nb-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.nb-marquee {
+  width: max-content;
+  animation: nb-marquee 28s linear infinite;
+}
+.nb-stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    #FDC800 0 10px,
+    var(--ink) 10px 20px
+  );
+  background-size: 28px 28px;
+  animation: nb-stripes 0.7s linear infinite;
+}
+.nb-slide {
+  animation: nb-slide 0.18s ease-out;
+}
+.nb-fade {
+  animation: nb-fade 0.18s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .nb-marquee, .nb-stripes, .nb-slide, .nb-fade { animation: none; }
+}
